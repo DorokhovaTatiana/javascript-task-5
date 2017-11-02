@@ -78,12 +78,10 @@ function getEmitter() {
                 .forEach((nameEvent) => {
                     events.forEach((eventData) => {
                         if (eventData.event === nameEvent) {
-                            if (eventData.currentTimes === 0 ||
-                                    eventData.currentTimes % eventData.frequency === 0 &&
-                                        eventData.times > eventData.currentTimes) {
+                            if (eventData.times > eventData.currentTimes &&
+                                    eventData.currentTimes++ % eventData.frequency === 0) {
                                 eventData.handler.call(eventData.context);
                             }
-                            eventData.currentTimes++;
                         }
                     });
                 });
