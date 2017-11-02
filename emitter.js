@@ -66,10 +66,9 @@ function getEmitter() {
          */
         emit: function (event) {
             event.split('.')
-                .reduce((nameEvents, currentName) => {
-                    let length = nameEvents.length;
-                    let newEvent = length === 0
-                        ? currentName : [nameEvents[length - 1], currentName].join('.');
+                .reduce((nameEvents, currentEvent) => {
+                    let newEvent = nameEvents.length === 0 ? currentEvent
+                        : [nameEvents.slice(-1), currentEvent].join('.');
                     nameEvents.push(newEvent);
 
                     return nameEvents;
