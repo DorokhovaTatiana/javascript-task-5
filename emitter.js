@@ -53,7 +53,7 @@ function getEmitter() {
             events = events.filter((currentEvent) => {
                 return currentEvent.context !== context ||
                     currentEvent.event !== event &&
-                        currentEvent.event.indexOf(event + '.') !== 0;
+                        !currentEvent.event.startsWith('.');
             });
 
             return this;
